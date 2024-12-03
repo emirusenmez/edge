@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edge Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        input#url{
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Edge Checker</h1>
+    <form method="POST">
+        <label for="url">URL:</label>
+        <input type="text" id="url" name="url" required>
+        <button type="submit">Test</button>
+    </form>
+
+    {% if results %}
+    <h2>Test Results:</h2>
+    <table border="1">
+        <tr><th>IP Address</th><th>Status Code</th></tr>
+        {% for result in results %}
+        <tr><td>{{ result.ip }}</td><td>{{ result.status_code }}</td></tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>
